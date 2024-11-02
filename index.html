@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يوتيوب عراقي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        :root {
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --navbar-color: #212121;
+            --sidebar-color: #ffffff;
+            --video-bg-color: #ffffff;
+            --highlight-color: #f44336;
+        }
+        [data-theme="dark"] {
+            --background-color: #181818;
+            --text-color: #ffffff;
+            --navbar-color: #333;
+            --sidebar-color: #282828;
+            --video-bg-color: #383838;
+            --highlight-color: #ff0000;
+        }
+        .navbar {
+            background-color: var(--navbar-color);
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        .navbar .search-bar {
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+        }
+        .navbar .search-bar input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-radius: 2px 0 0 2px;
+        }
+        .navbar .search-bar button {
+            padding: 8px 16px;
+            background-color: var(--highlight-color);
+            border: none;
+            border-radius: 0 2px 2px 0;
+            color: #fff;
+            cursor: pointer;
+        }
+        .navbar .user-options {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .user-options div {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 18px;
+            color: #f1f1f1;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: var(--sidebar-color);
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+            cursor: pointer;
+            color: #606060;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .sidebar ul li:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar ul li .material-icons {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 80px 20px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .video {
+            width: calc(100% / 3 - 20px);
+            background-color: var(--video-bg-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .video:hover {
+            transform: scale(1.05);
+        }
+        .video img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .video .video-info {
+            padding: 10px;
+        }
+        .video .video-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        .video .video-channel {
+            font-size: 14px;
+            color: #909090;
+        }
+        .video .video-stats {
+            font-size: 13px;
+            color: #707070;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .content {
+                margin-left: 0;
+            }
+            .video {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="navbar">
+        <div class="logo">YouTube</div>
+        <div class="search-bar">
+            <input type="text" placeholder="ابحث عن الفيديوهات...">
+            <button>بحث</button>
+        </div>
+        <div class="user-options">
+            <span class="material-icons theme-toggle" onclick="toggleTheme()">brightness_4</span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <h2>القائمة</h2>
+        <ul>
+            <li><span class="material-icons">home</span>الرئيسية</li>
+            <li><span class="material-icons">trending_up</span>المحتوى الشائع</li>
+            <li><span class="material-icons">video_library</span>المكتبة</li>
+            <li><span class="material-icons">watch_later</span>مشاهدة لاحقًا</li>
+            <li><span class="material-icons">subscriptions</span>الاشتراكات</li>
+            <li><span class="material-icons">recommend</span>المقترحات</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="video">
+            <img src="s.png" alt="Video Thumbnail">
+            <div class="video-info">
+                <div class="video-title">كيف تتقن البرمجة في أقل من أسبوع؟</div>
+                <div class="video-channel">قناة البرمجة</div>
+                <div class="video-stats">1.5M مشاهدة • قبل يومين</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute("data-theme");
+            const newTheme = currentTheme === "light" ? "dark" : "light";
+            body.setAttribute("data-theme", newTheme);
+            const toggleIcon = document.querySelector(".theme-toggle");
+            toggleIcon.textContent = newTheme === "dark" ? "brightness_7" : "brightness_4";
+        }
+    </script>
+</body>
+</html>
